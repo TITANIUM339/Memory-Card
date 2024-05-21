@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/reset.css";
 import "../styles/App.css";
 
 function App() {
