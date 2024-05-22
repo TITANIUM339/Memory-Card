@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import "../styles/reset.css";
 import "../styles/App.css";
+import Cards from "./Cards.jsx";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
     const [cards, setCards] = useState([]);
+    const [score, setScore] = useState({score: 0, highScore: 0});
+    const [level, setLevel] = useState(1);
 
     useEffect(() => {
         const pokemons = [];
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3 * level; i++) {
             pokemons.push(
                 fetch(
                     `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 649)}/`,
@@ -40,21 +43,26 @@ function App() {
             .catch(() =>
                 alert("An Error has ocurred. Try refreshing the page."),
             );
-    }, []);
+    }, [level]);
+
+    function updateScore() {
+        console.log("click");
+    }
 
     return (
         <>
-            {loaded
-                ? cards.map((card) => (
-                      <ul key={card.id}>
-                          <li>
-                              <img src={card.imgUrl} alt="" />
-                          </li>
-                          <li>{card.name}</li>
-                          <li>{card.id}</li>
-                      </ul>
-                  ))
-                : "Loading..."}
+            <main>
+                <div className="info">
+                    <div>SCORE: {score.score}</div>
+                    <div>HIGH SCORE: {score.highScore}</div>
+                    <div>CARDS LEFT: {score.score - 3 * (level - 1)}/{3 * level}</div>
+                </div>
+                {loaded ? (
+                    <Cards cards={cards} updateScore={updateScore}></Cards>
+                ) : (
+                    "Loading..."
+                )}
+            </main>
         </>
     );
 }
