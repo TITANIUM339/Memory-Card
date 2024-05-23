@@ -1,5 +1,6 @@
 import Card from "./Card.jsx";
 import "../styles/Cards.css";
+import PropTypes from "prop-types";
 
 function Cards({ cards, updateScore }) {
     return (
@@ -15,5 +16,10 @@ function Cards({ cards, updateScore }) {
         </div>
     );
 }
+
+Cards.propTypes = {
+    cards: PropTypes.array.isRequired,
+    updateScore: PropTypes.func.isRequired,
+};
 
 export default Cards;

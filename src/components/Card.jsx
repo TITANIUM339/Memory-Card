@@ -1,5 +1,6 @@
 import Tilt from "react-parallax-tilt";
 import "../styles/Card.css";
+import PropTypes from "prop-types";
 
 function Card({ imgUrl, name, updateScore }) {
     return (
@@ -12,6 +13,12 @@ function Card({ imgUrl, name, updateScore }) {
             </button>
         </Tilt>
     );
+}
+
+Card.propTypes = {
+    imgUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    updateScore: PropTypes.func.isRequired,
 }
 
 export default Card;
