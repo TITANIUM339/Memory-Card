@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/reset.css";
 import "../styles/App.css";
 import Cards from "./Cards.jsx";
+import loadingIcon from "../assets/loading.svg";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -60,7 +61,9 @@ function App() {
                 {loaded ? (
                     <Cards cards={cards} updateScore={updateScore}></Cards>
                 ) : (
-                    "Loading..."
+                    <div className="loading">
+                        <img src={loadingIcon} alt="loading" />
+                    </div>
                 )}
             </main>
         </>
