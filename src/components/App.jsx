@@ -7,7 +7,7 @@ import loadingIcon from "../assets/loading.svg";
 function App() {
     const [loaded, setLoaded] = useState(false);
     const [cards, setCards] = useState([]);
-    const [score, setScore] = useState({score: 0, highScore: 0});
+    const [score, setScore] = useState({ score: 0, highScore: 0 });
     const [level, setLevel] = useState(1);
 
     useEffect(() => {
@@ -56,7 +56,9 @@ function App() {
                 <div className="info">
                     <div>SCORE: {score.score}</div>
                     <div>HIGH SCORE: {score.highScore}</div>
-                    <div>CARDS LEFT: {score.score - 3 * (level - 1)}/{3 * level}</div>
+                    <div>
+                        CARDS LEFT: {score.score - 3 * (level - 1)}/{3 * level}
+                    </div>
                 </div>
                 {loaded ? (
                     <Cards cards={cards} updateScore={updateScore}></Cards>

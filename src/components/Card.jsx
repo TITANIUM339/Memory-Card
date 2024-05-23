@@ -19,6 +19,6 @@ Card.propTypes = {
     imgUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     updateScore: PropTypes.func.isRequired,
-}
+};
 
 export default Card;
