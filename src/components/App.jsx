@@ -9,18 +9,30 @@ function App() {
     const [cards, setCards] = useState([]);
     const [score, setScore] = useState({ score: 0, highScore: 0 });
     const [level, setLevel] = useState(1);
+    const [cardsLeft, setCardsLeft] = useState(0);
+
+    const numberOfCards = 3;
 
     useEffect(() => {
+        const ids = [];
+
+        do {
+            const id = Math.ceil(Math.random() * 649);
+
+            if (!ids.includes(id)) ids.push(id);
+        } while (ids.length < numberOfCards * level);
+
         const pokemons = [];
 
-        for (let i = 0; i < 3 * level; i++) {
+        for (let i = 0; i < numberOfCards * level; i++) {
             pokemons.push(
-                fetch(
-                    `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 649)}/`,
-                    { mode: "cors" },
-                ).then((response) => response.json()),
+                fetch(`https://pokeapi.co/api/v2/pokemon/${ids[i]}/`, {
+                    mode: "cors",
+                }).then((response) => response.json()),
             );
         }
+
+        setLoaded(false);
 
         Promise.all(pokemons)
             .then((data) => {
@@ -46,8 +58,28 @@ function App() {
             );
     }, [level]);
 
-    function updateScore() {
-        console.log("click");
+    function updateScore(option) {
+        if (option === "reset") {
+            setScore({...score, score: 0});
+            setLevel(1);
+            setCardsLeft(0);
+            return;
+        }
+
+        const newScore = score.score + 1;
+        const newCardsLeft = cardsLeft + 1;
+
+        setScore({
+            score: newScore,
+            highScore: newScore > score.highScore ? newScore : score.highScore,
+        });
+
+        setCardsLeft(newCardsLeft);
+
+        if (newCardsLeft === numberOfCards * level) {
+            setLevel(level + 1);
+            setCardsLeft(0);
+        }
     }
 
     return (
@@ -57,7 +89,7 @@ function App() {
                     <div>SCORE: {score.score}</div>
                     <div>HIGH SCORE: {score.highScore}</div>
                     <div>
-                        CARDS LEFT: {score.score - 3 * (level - 1)}/{3 * level}
+                        CARDS LEFT: {cardsLeft}/{numberOfCards * level}
                     </div>
                 </div>
                 {loaded ? (
