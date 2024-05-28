@@ -6,10 +6,15 @@ function Card({ imgUrl, name, updateScore }) {
     return (
         <Tilt tiltReverse={true} glareEnable={true}>
             <button className="card" onClick={updateScore}>
-                <div className="card-img">
-                    <img src={imgUrl} alt="" />
+                <div className="card-front">
+                    <div className="card-img">
+                        <img src={imgUrl} alt="" />
+                    </div>
+                    <div className="card-name">{name}</div>
                 </div>
-                <div className="card-name">{name}</div>
+                <div className="card-back">
+                    <img src="/pokeball.svg" alt="" />
+                </div>
             </button>
         </Tilt>
     );

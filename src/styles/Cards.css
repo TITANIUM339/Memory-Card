@@ -9,4 +9,5 @@
 .cards > div {
     width: 250px;
     height: 400px;
+    perspective: 2000px;
 }
