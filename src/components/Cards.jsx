@@ -39,7 +39,7 @@ function Cards({ cards, updateScore }) {
         const flipToBackOptions = {
             duration: 750,
             iterations: 1,
-            fill: "forwards"
+            fill: "forwards",
         };
 
         const flipToFrontKeyframes = [
@@ -55,15 +55,17 @@ function Cards({ cards, updateScore }) {
         const cardElements = document.querySelectorAll(".card");
 
         cardElements.forEach((card) => {
-            card.animate(flipToBackKeyframes, flipToBackOptions).finished.then(() => {
-                card.animate(flipToFrontKeyframes, flipToFrontOptions);
-                setShuffledCards(shuffle(shuffledCards));
-            });
+            card.animate(flipToBackKeyframes, flipToBackOptions).finished.then(
+                () => {
+                    card.animate(flipToFrontKeyframes, flipToFrontOptions);
+                    setShuffledCards(shuffle(shuffledCards));
+                },
+            );
         });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clickedCards]);
-    
+
     return (
         <div className="cards">
             {shuffledCards.map((card) => (

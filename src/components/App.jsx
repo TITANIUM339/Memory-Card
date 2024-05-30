@@ -60,7 +60,7 @@ function App() {
 
     function updateScore(option) {
         if (option === "reset") {
-            setScore({...score, score: 0});
+            setScore({ ...score, score: 0 });
             setLevel(1);
             setCardsLeft(0);
             return;

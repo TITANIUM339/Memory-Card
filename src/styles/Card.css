@@ -38,7 +38,8 @@
     text-align: center;
 }
 
-.card-back, .card-front {
+.card-back,
+.card-front {
     user-select: none;
     pointer-events: none;
     position: absolute;
