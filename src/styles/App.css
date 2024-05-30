@@ -13,6 +13,7 @@ body {
         sans-serif;
     min-height: 100dvh;
     display: grid;
+    grid-template-rows: 1fr min-content;
 }
 
 main {

@@ -7,7 +7,32 @@
         <title>Memory Card</title>
     </head>
     <body>
+        <style>
+            .github:hover {
+                transform: scale(1.2);
+            }
+        </style>
         <div id="root"></div>
+        <footer
+            style="
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+                gap: 5px;
+                align-items: center;
+            "
+        >
+            <span class="copyright"></span>
+            <span class="github" style="transition: transform 200ms">
+                <a href="https://github.com/TITANIUM339" target="_blank">
+                    <img src="/github.svg" alt="github" />
+                </a>
+            </span>
+            <script>
+                document.querySelector(".copyright").innerHTML =
+                    `Copyright &#169; TITANIUM339 ${new Date().getFullYear()}`;
+            </script>
+        </footer>
         <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>
