@@ -39,6 +39,8 @@
 }
 
 .card-back, .card-front {
+    user-select: none;
+    pointer-events: none;
     position: absolute;
     backface-visibility: hidden;
     height: 100%;
